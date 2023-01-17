@@ -13,7 +13,7 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
         header("Location: ../../posting/posts.html");
     }
 
-    require_once(__DIR__ . "/../../database/accountFunctions.php");
+    require_once(__DIR__ . "/../util/accountFunctions.php");
     $user = null;
     $user = get_user_login($_POST["username"]);
     if ($user) {

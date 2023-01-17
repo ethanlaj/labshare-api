@@ -1,7 +1,7 @@
 <?PHP
 
 if (isset($_POST["comment_id"])) {
-	require_once(__DIR__ . "/../../database/postFunctions.php");
+	require_once(__DIR__ . "/../util/postFunctions.php");
 
 	$comment_id = $_POST["comment_id"];
 

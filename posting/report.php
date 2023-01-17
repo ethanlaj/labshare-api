@@ -3,7 +3,7 @@
 $VALID_TYPES = array(1, 2);
 
 if (isset($_POST["id"]) && isset($_POST["type"])) {
-	require_once(__DIR__ . "/../../database/postFunctions.php");
+	require_once(__DIR__ . "/../util/postFunctions.php");
 
 	$id = $_POST["id"];
 	$type = (int) $_POST["type"];

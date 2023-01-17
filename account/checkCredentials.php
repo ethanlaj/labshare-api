@@ -3,7 +3,7 @@ header("Content-type: application/json");
 
 $output = array();
 $password;
-require(__DIR__ . "/../../database/accountFunctions.php");
+require(__DIR__ . "/../util/accountFunctions.php");
 
 
 

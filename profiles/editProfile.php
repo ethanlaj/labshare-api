@@ -1,6 +1,6 @@
 <?PHP
 
-require_once(__DIR__ . "/../../database/accountFunctions.php");
+require_once(__DIR__ . "/../util/accountFunctions.php");
 
 
 $quals_degrees = array_key_exists("qualifications", $_POST)

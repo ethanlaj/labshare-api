@@ -2,7 +2,7 @@
 
 header("Content-Type: application/json");
 
-require_once(__DIR__ . "/../../database/notificationFunctions.php");
+require_once(__DIR__ . "/../util/notificationFunctions.php");
 
 $notifications = get_notifications();
 

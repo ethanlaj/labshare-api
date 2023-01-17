@@ -1,5 +1,5 @@
 <?PHP
-require_once(__DIR__ . "/../../global/validation.php");
+require_once(__DIR__ . "/../util/validation.php");
 header("Content-type: application/json");
 // ini_set('display_errors', 1);
 // ini_set('display_startup_errors', 1);
@@ -9,7 +9,7 @@ header("Content-type: application/json");
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-require_once(__DIR__ . "/../../database/accountFunctions.php");
+require_once(__DIR__ . "/../util/accountFunctions.php");
 
 
 $firstName = array_key_exists("firstName", $_POST)

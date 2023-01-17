@@ -1,9 +1,9 @@
 <?PHP
 
-require_once(__DIR__ . "/../../global/validation.php");
+require_once(__DIR__ . "/../util/validation.php");
 
 if (isset($_POST["title"]) && isset($_POST["content"])) {
-	require_once(__DIR__ . "/../../database/postFunctions.php");
+	require_once(__DIR__ . "/../util/postFunctions.php");
 
 	$title = $_POST["title"];
 	$content = $_POST["content"];

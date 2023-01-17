@@ -1,7 +1,7 @@
 <?PHP
 header("Content-Type: application/json");
 
-require_once(__DIR__ . "/../../database/profileFunctions.php");
+require_once(__DIR__ . "/../util/profileFunctions.php");
 
 if (isset($_GET["search"]) && $_GET["search"]) {
 	$users = search($_GET["search"]);
