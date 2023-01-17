@@ -6,7 +6,7 @@ if (!isset($_SESSION["user"]))
     return header("HTTP/1.1 401 Unauthorized");
 
 require_once(__DIR__ . "/../util/accountFunctions.php");
-require_once('bucket_config.php');
+require_once(__DIR__ . "/../util/bucket_config.php");
 
 $valid_types = array(".png", ".PNG", ".jpg", ".JPG", ".jpeg", ".JPEG", ".webp");
 
