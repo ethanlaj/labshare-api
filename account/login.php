@@ -1,39 +1,42 @@
-<?PHP
-header("Content-type: application/json");
+<?php
+require_once __DIR__ . "/../services/auth.php";
+require_once __DIR__ . "/../services/jwt.php";
+require_once __DIR__ . "/../services/validate.php";
 
-$output = array();
-$user_success = false;
-$password_success = false;
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: POST, OPTIONS");
+header("Content-Type: text/plain");
 
-if (isset($_POST["username"]) && isset($_POST["password"])) {
-    $current_user_id = isset($_SESSION["user"])
-        ? $_SESSION["user"] : null;
+$method = $_SERVER['REQUEST_METHOD'];
+$req_body = file_get_contents('php://input');
+$body = json_decode($req_body, true);
 
-    if ($current_user_id) {
-        header("Location: ../../posting/posts.html");
-    }
+/**
+ *  POST account/login
+ *  Authentication Not Required
+ * 	Parameter: JSON:
+ * 	{
+ * 		email: user@domain.com
+ * 		password: pwd
+ * 	}
+ * 	Returned Data: String - A JWT Token
+ */
+if ($method == 'POST') {
+	/**
+	 * if (!email || !password)
+	 * 		if (Valid JWT token)
+	 * 			Return a new JWT Token
+	 * 		else
+	 * 			401 Unauthorized
+	 */
 
-    require_once(__DIR__ . "/../util/accountFunctions.php");
-    $user = null;
-    $user = get_user_login($_POST["username"]);
-    if ($user) {
-        $user_success = true;
-    } else
-        $user_success = false;
-
-    $hash = $user["pwd"];
-    $is_pwd_correct = password_verify($_POST["password"], $hash);
-
-    if ($is_pwd_correct) {
-        $_SESSION["user"] = $user["user_id"];
-        $password_success = true;
-    } else {
-        $password_success = false;
-    }
-} else {
-    // echo "WRONG PARAMS";
+	if (isset($body["email"]) && isset($body["password"])) {
+		array_validate("login", $body);
+	} else if (is_requestor_authorized()) {
+		$payload = set_payload_times(get_payload());
+		var_dump($payload);
+	} else {
+		http_response_code(401);
+		die();
+	}
 }
-if ($user_success && $password_success) {
-    $output["loginSuccess"] = true;
-}
-echo json_encode($output);

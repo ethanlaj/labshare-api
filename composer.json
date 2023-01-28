@@ -1,5 +1,7 @@
 {
-    "require": {
-        "google/cloud-storage": "^1.29"
-    }
+	"require": {
+		"google/cloud-storage": "^1.29",
+		"firebase/php-jwt": "^6.3",
+		"bartosz-maciaszek/validation": "^1.1"
+	}
 }
