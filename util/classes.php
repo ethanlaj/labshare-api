@@ -23,9 +23,9 @@ class Post
 
 	// Not mapped in the DB
 	public $comments = array();
-	public $hasApplied;
-	public $hasSaved;
-	public $hasReported;
+	public $hasApplied = false;
+	public $hasSaved = false;
+	public $hasReported = false;
 
 	function __construct($db_object, $includeExtraData = false)
 	{
@@ -61,9 +61,11 @@ class Post
 		if ($includeExtraData) {
 			$this->comments = getCommentsForPost($this->post_id);
 
-			$this->hasApplied = applicationExists($this->post_id);
-			$this->hasSaved = saveExists($this->post_id);
-			$this->hasReported = reportExists($this->post_id, 1);
+			if (isset($_SESSION["user"])) {
+				$this->hasApplied = applicationExists($this->post_id);
+				$this->hasSaved = saveExists($this->post_id);
+				$this->hasReported = reportExists($this->post_id, 1);
+			}
 		}
 	}
 }

@@ -42,7 +42,7 @@ $THIS_IS_OLD_DO_NOT_USE = array(
 
 $defaults = array(
 	// shared
-	"id" => V::number()->required(),
+	"id" => V::any()->required(),
 
 	// posting
 	"zip" => V::string()->regex("/^[0-9]{5}$/")->defaultValue(''),
@@ -52,8 +52,8 @@ $defaults = array(
 );
 
 $schemas = array(
-	"id" => V::arr()->keys([
-		"id" => $defaults["id"],
+	"getPost" => V::arr()->keys([
+		"post_id" => $defaults["id"]
 	]),
 	"createPost" => V::arr()->keys([
 		"title" => $defaults["title"],
@@ -61,9 +61,12 @@ $schemas = array(
 		"zip" => $defaults["zip"],
 	]),
 	"editPost" => V::arr()->keys([
-		"id" => $defaults["id"],
+		"post_id" => $defaults["id"],
 		"title" => $defaults["title"],
 		"content" => $defaults["postContent"],
 		"zip" => $defaults["zip"],
+	]),
+	"deletePost" => V::arr()->keys([
+		"post_id" => $defaults["id"]
 	])
 );

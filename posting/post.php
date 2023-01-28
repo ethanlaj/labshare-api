@@ -18,18 +18,14 @@ $req_body = file_get_contents('php://input');
 $body = json_decode($req_body, true);
 
 /**
- *  GET posting/post
+ *  GET posting/post/1
  *  Authentication Not Required
- * 	Parameter: JSON:
- * 	{
- * 		id: 1
- * 	}
  * 	Returned Data: JSON
  */
 if ($method == 'GET') {
-	array_validate("id", $body);
+	array_validate("getPost", $_GET);
 
-	echo json_encode(getPost($body["id"]), true);
+	echo json_encode(getPost($_GET["post_id"], true));
 }
 
 /**
@@ -99,7 +95,7 @@ if ($method == 'PUT') {
  * 	}
  */
 if ($method == 'DELETE') {
-	array_validate("id", $body);
+	array_validate("deletePost", $body);
 
 	deletePost($body["id"]);
 }
